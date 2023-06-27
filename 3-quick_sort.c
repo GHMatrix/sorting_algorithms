@@ -18,8 +18,8 @@ void swap_ints(int *a, int *b)
 }
 
 /**
- * hoare_partition - Order a subset of an array of integers according to
- *                   the Hoare partition scheme (first element as pivot).
+ * lomuto_partition - Order a subset of an array of integers according to
+ *                   the Lomuto partition scheme.
  * @array: The array of integers.
  * @size: The size of the array.
  * @low: The starting index of the subset to order.
@@ -27,7 +27,7 @@ void swap_ints(int *a, int *b)
  *
  * Return: The final partition index.
  */
-int hoare_partition(int *array, size_t size, int low, int high)
+int lomuto_partition(int *array, size_t size, int low, int high)
 {
 	int pivot = array[low];
 	int i = low - 1;
@@ -52,7 +52,7 @@ int hoare_partition(int *array, size_t size, int low, int high)
 }
 
 /**
- * hoare_sort - function uses the quicksort algorithm through recursion.
+ * lomuto_sort - function uses quicksort algorithm via recursion.
  * @array: An array of integers to sort.
  * @size: The size of the array.
  * @low: The starting index of the array partition
@@ -60,14 +60,14 @@ int hoare_partition(int *array, size_t size, int low, int high)
  *
  * Description: Uses the Hoare partition scheme.
  */
-void hoare_sort(int *array, size_t size, int low, int high)
+void lomuto_sort(int *array, size_t size, int low, int high)
 {
 	if (low < high)
 	{
-	int partition_index = hoare_partition(array, size, low, high);
+	int partition_index = lomuto_partition(array, size, low, high);
 
-	hoare_sort(array, size, low, partition_index);
-	hoare_sort(array, size, partition_index + 1, high);
+	lomuto_sort(array, size, low, partition_index);
+	lomuto_sort(array, size, partition_index + 1, high);
 	}
 }
 
@@ -77,7 +77,7 @@ void hoare_sort(int *array, size_t size, int low, int high)
  * @array: An array of integers.
  * @size: The size of the array.
  *
- * Description: Uses the Hoare partition scheme. Prints the array
+ * Description: Uses the Lomuto partition scheme. Prints the array
  *              after each swap of two elements.
  */
 void quick_sort(int *array, size_t size)
@@ -85,5 +85,5 @@ void quick_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 	return;
 
-	hoare_sort(array, size, 0, size - 1);
+	lomuto_sort(array, size, 0, size - 1);
 }
